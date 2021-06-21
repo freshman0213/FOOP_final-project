@@ -1,6 +1,5 @@
 package controller;
 
-import knight.Knight;
 import model.Direction;
 import model.World;
 
@@ -8,20 +7,20 @@ import model.World;
  * @author - johnny850807@gmail.com (Waterball)
  */
 public class Game extends GameLoop {
-    private final WarPlane warPlane;
+    private final Warplane warplane;
     private final World world;
 
-    public Game(World world, WarPlane warPlane) {
-        this.warPlane = warPlane;
+    public Game(World world, Warplane warplane) {
+        this.warplane = warplane;
         this.world = world;
     }
 
-    public void moveKnight(Direction direction) {
-        warPlane.move(direction);
+    public void moveWarplane(Direction direction) {
+        warplane.move(direction);
     }
 
-    public void stopKnight(Direction direction) {
-        warPlane.stop(direction);
+    public void stopWarplane(Direction direction) {
+        warplane.stop(direction);
     }
 
     @Override

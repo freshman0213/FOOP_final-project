@@ -40,16 +40,16 @@ public class GameView extends JFrame {
             public void keyPressed(KeyEvent keyEvent) {
                 switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_W:
-                        game.moveKnight(Direction.UP);
+                        game.moveWarplane(Direction.UP);
                         break;
                     case KeyEvent.VK_S:
-                        game.moveKnight(Direction.DOWN);
+                        game.moveWarplane(Direction.DOWN);
                         break;
                     case KeyEvent.VK_A:
-                        game.moveKnight(Direction.LEFT);
+                        game.moveWarplane(Direction.LEFT);
                         break;
                     case KeyEvent.VK_D:
-                        game.moveKnight(Direction.RIGHT);
+                        game.moveWarplane(Direction.RIGHT);
                         break;
                 }
             }
@@ -58,16 +58,16 @@ public class GameView extends JFrame {
             public void keyReleased(KeyEvent keyEvent) {
                 switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_W:
-                        game.stopKnight(Direction.UP);
+                        game.stopWarplane(Direction.UP);
                         break;
                     case KeyEvent.VK_S:
-                        game.stopKnight(Direction.DOWN);
+                        game.stopWarplane(Direction.DOWN);
                         break;
                     case KeyEvent.VK_A:
-                        game.stopKnight(Direction.LEFT);
+                        game.stopWarplane(Direction.LEFT);
                         break;
                     case KeyEvent.VK_D:
-                        game.stopKnight(Direction.RIGHT);
+                        game.stopWarplane(Direction.RIGHT);
                         break;
                 }
             }
