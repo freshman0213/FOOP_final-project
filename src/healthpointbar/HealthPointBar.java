@@ -1,4 +1,4 @@
-package knight;
+package healthpointbar;
 
 import model.Sprite;
 
