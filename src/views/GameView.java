@@ -40,16 +40,16 @@ public class GameView extends JFrame {
             public void keyPressed(KeyEvent keyEvent) {
                 switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_W:
-                        game.moveKnight(Direction.UP);
+                        game.moveWarplane(Direction.UP);
                         break;
                     case KeyEvent.VK_S:
-                        game.moveKnight(Direction.DOWN);
+                        game.moveWarplane(Direction.DOWN);
                         break;
                     case KeyEvent.VK_A:
-                        game.moveKnight(Direction.LEFT);
+                        game.moveWarplane(Direction.LEFT);
                         break;
                     case KeyEvent.VK_D:
-                        game.moveKnight(Direction.RIGHT);
+                        game.moveWarplane(Direction.RIGHT);
                         break;
                 }
             }
@@ -58,40 +58,20 @@ public class GameView extends JFrame {
             public void keyReleased(KeyEvent keyEvent) {
                 switch (keyEvent.getKeyCode()) {
                     case KeyEvent.VK_W:
-                        game.stopKnight(Direction.UP);
+                        game.stopWarplane(Direction.UP);
                         break;
                     case KeyEvent.VK_S:
-                        game.stopKnight(Direction.DOWN);
+                        game.stopWarplane(Direction.DOWN);
                         break;
                     case KeyEvent.VK_A:
-                        game.stopKnight(Direction.LEFT);
+                        game.stopWarplane(Direction.LEFT);
                         break;
                     case KeyEvent.VK_D:
-                        game.stopKnight(Direction.RIGHT);
+                        game.stopWarplane(Direction.RIGHT);
                         break;
                 }
             }
         });
-    }
-
-    public static class Canvas extends JPanel implements GameLoop.View {
-        private World world;
-
-        @Override
-        public void render(World world) {
-            this.world = world;
-            repaint(); // ask the JPanel to repaint, it will invoke paintComponent(g) after a while.
-        }
-
-        @Override
-        protected void paintComponent(Graphics g /*paintbrush*/) {
-            super.paintComponent(g);
-            // Now, let's paint
-            g.setColor(Color.WHITE); // paint background with all white
-            g.fillRect(0, 0, GameView.WIDTH, GameView.HEIGHT);
-
-            world.render(g); // ask the world to paint itself and paint the sprites on the canvas
-        }
     }
 }
 
