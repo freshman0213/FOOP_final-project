@@ -1,6 +1,7 @@
 package controller;
 
 import model.World;
+import views.View;
 
 /**
  * @author - johnny850807@gmail.com (Waterball)
@@ -39,11 +40,5 @@ public abstract class GameLoop {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-
-    public interface View {
-
-        void render(World world);
     }
 }
