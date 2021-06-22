@@ -18,60 +18,33 @@ import java.util.Collection;
 public class GameView extends JFrame {
     public static final int HEIGHT = 500;
     public static final int WIDTH = 500;
-    private final Canvas canvas = new Canvas();
+    private final Canvas canvas;
+    private final StartCanvas startCanvas;
     private final Game game;
 
     public GameView(Game game) throws HeadlessException {
         this.game = game;
+        this.startCanvas = new StartCanvas(game, this);
+        this.canvas = new Canvas(game);
         game.setView(canvas);
+        start();
+    }
+
+    public void start() {
+        // add start canvas to frame 
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setSize(WIDTH, HEIGHT);
+        setContentPane(startCanvas);
+        setVisible(true);
     }
 
     public void launch() {
-        // GUI Stuff
+        // launch main game canvas panel
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setContentPane(canvas);
         setSize(WIDTH, HEIGHT);
         setContentPane(canvas);
         setVisible(true);
-
-        // Keyboard listener
-        addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent keyEvent) {
-                switch (keyEvent.getKeyCode()) {
-                    case KeyEvent.VK_W:
-                        game.moveWarplane(Direction.UP);
-                        break;
-                    case KeyEvent.VK_S:
-                        game.moveWarplane(Direction.DOWN);
-                        break;
-                    case KeyEvent.VK_A:
-                        game.moveWarplane(Direction.LEFT);
-                        break;
-                    case KeyEvent.VK_D:
-                        game.moveWarplane(Direction.RIGHT);
-                        break;
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent keyEvent) {
-                switch (keyEvent.getKeyCode()) {
-                    case KeyEvent.VK_W:
-                        game.stopWarplane(Direction.UP);
-                        break;
-                    case KeyEvent.VK_S:
-                        game.stopWarplane(Direction.DOWN);
-                        break;
-                    case KeyEvent.VK_A:
-                        game.stopWarplane(Direction.LEFT);
-                        break;
-                    case KeyEvent.VK_D:
-                        game.stopWarplane(Direction.RIGHT);
-                        break;
-                }
-            }
-        });
     }
 }
 

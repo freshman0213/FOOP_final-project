@@ -35,11 +35,11 @@ public class ImageStateUtils {
         }
     }
 
-    private static File readFile(Path filePath) {
+    public static File readFile(Path filePath) {
         return filePath.toFile();
     }
 
-    private static Image readImage(File file) {
+    public static Image readImage(File file) {
         try {
             return ImageIO.read(file);
         } catch (IOException e) {
@@ -47,7 +47,7 @@ public class ImageStateUtils {
         }
     }
 
-    private static boolean validateFileName(File file) {
+    public static boolean validateFileName(File file) {
         String fileName = file.getName();
         return Pattern.matches(SUPPORTED_FILE_NAME_PATTERN, fileName);
     }

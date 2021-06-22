@@ -30,7 +30,5 @@ public class Main {
         World world = new World(new KnightCollisionHandler(), p1, p2);  // model
         Game game = new Game(world, p1, p2);  // controller
         GameView view = new GameView(game);  // view
-        game.start();  // run the game and the game loop
-        view.launch(); // launch the GUI
     }
 }
