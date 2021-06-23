@@ -1,6 +1,6 @@
-package flyingobjects.bullet;
+package flyingObjects.bullet;
 
-import flyingobjects.Bullet;
+import flyingObjects.Bullet;
 
 import java.awt.*;
 

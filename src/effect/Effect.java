@@ -1,7 +1,10 @@
 package effect;
 
-import model.Sprite;
+import warplane.StatusState;
+
+import java.util.List;
 
 public interface Effect {
-    void apply(Sprite target);
+    List<Object> getAffectedStatus();
+    StatusState nextState(Object status);
 }

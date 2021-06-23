@@ -1,7 +1,6 @@
-package warplane.singlebomber;
+package warplanes.singlebomber;
 
 import fsm.ImageRenderer;
-import model.Direction;
 
 import java.awt.*;
 

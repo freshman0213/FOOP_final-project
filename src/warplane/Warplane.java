@@ -1,83 +1,87 @@
 package warplane;
 
-import fsm.FiniteStateMachine;
 import fsm.ImageRenderer;
-import fsm.State;
-import fsm.WaitingPerFrame;
 import model.Direction;
 import model.HealthPointSprite;
 import model.SpriteShape;
+import flyingObjects.Bullet;
+import warplane.cd.*;
+import warplane.bullet.*;
+import warplane.numBullets.*;
+import warplane.velocity.*;
+import effect.Effect;
 
 import java.awt.*;
-import java.util.Set;
-import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import static fsm.FiniteStateMachine.Transition.from;
-import static warplane.Warplane.EventStatus.*;
-import static warplane.Warplane.EventPose.*;
-import static utils.ImageStateUtils.imageStatesFromFolder;
+import static warplane.Warplane.Status.*;
 
 public abstract class Warplane extends HealthPointSprite {
     protected SpriteShape shape;
-    private final FiniteStateMachine fsmStatus, fsmPose;
-    private final Set<Direction> directions = new CopyOnWriteArraySet<>();
+    private final Map<Object, ImageRenderer> imageRenderers = new HashMap<>();
+    private final Map<Object, StatusState> defaultStatus = new HashMap<>();
+    private final Map<Object, StatusState> currentStatus = new HashMap<>();
 
-    public enum EventStatus {
-        Buff, Debuff
-    }
-    public enum EventPose {
-        WALK, STOP
+    public enum Status {
+        CD, Bullet, NumBullets, Velocity
     }
 
-    public Warplane(int hp, int attack_cd, ImageRenderer imageRenderer, State idle, State walking) { // template for all warplanes
+    public Warplane(int hp, int cd, Bullet bullet, int numBullet, int velocity) { // template for all warplanes
         super(hp);
-        fsmStatus = new FiniteStateMachine();
-        fsmPose = new FiniteStateMachine();
+        imageRenderers.put(CD, new CDImageRenderer(this));
+        imageRenderers.put(Bullet, new BulletImageRenderer(this));
+        imageRenderers.put(NumBullets, new NumBulletsImageRenderer(this));
+        imageRenderers.put(Velocity, new VelocityImageRenderer(this));
 
-        // State for Status (fixed for all warplanes)
-        State normal = new WaitingPerFrame(,
-                new ); // Wait several frames for each image
-        State buffed = ;
-        State debuffed = ;
-
-        fsmStatus.setInitialState(normal);
-        fsmStatus.addTransition(from(normal).when(Buff).to(buffed));
-        fsmStatus.addTransition(from(normal).when(Debuff).to(debuffed));
-        fsmStatus.addTransition(from(buffed).when(Buff).to(buffed)); // for multiple effects
-        fsmStatus.addTransition(from(buffed).when(Debuff).to(debuffed));
-        fsmStatus.addTransition(from(debuffed).when(Buff).to(buffed));
-        fsmStatus.addTransition(from(debuffed).when(Debuff).to(debuffed));
-
-        // State for Pose
-        fsmPose.setInitialState(idle);
-        fsmPose.addTransition(from(idle).when(WALK).to(walking));
-        fsmPose.addTransition(from(walking).when(STOP).to(idle));
+        // TODO: 1. how to present the status (what image should we use)
+        defaultStatus.put(CD, new NormalCDState(-1, this, cd, , imageRenderers.get(CD)));
+        currentStatus.put(CD, defaultStatus.get(CD).copy());
+        defaultStatus.put(Bullet, new NormalBulletState(-1, this, bullet, , imageRenderers.get(Bullet)));
+        currentStatus.put(Bullet, defaultStatus.get(Bullet).copy());
+        defaultStatus.put(NumBullets, new NormalNumBulletsState(-1, this, numBullet, , imageRenderers.get(NumBullets)));
+        currentStatus.put(NumBullets, defaultStatus.get(NumBullets).copy());
+        defaultStatus.put(Velocity, new NormalVelocityState(-1, this, velocity, , imageRenderers.get(Velocity)));
+        currentStatus.put(Velocity, defaultStatus.get(Velocity).copy());
     }
 
-    public void buff() {} // TODO : come up with a proper input to know which buff is taken
-
-    public void move(Direction direction) {
-
+    public int getVelocity() {
+        return ((VelocityState) currentStatus.get(Velocity)).getVelocity();
     }
 
-    public void stop(Direction direction) {
-
+    public ImageRenderer getImageRenderer(Object status) {
+        return imageRenderers.get(status);
     }
 
-    public void update() {
-        // update position
+    public void takeEffect(Effect effect) {
+        List<Object> affectedStatus = effect.getAffectedStatus();
+        for (Object status : affectedStatus) {
+            currentStatus.put(status, effect.nextState(status));
+        }
+    }
 
-        // shoot bullets (delegate to status)
+    public void reset(Object status) {
+        currentStatus.put(status, defaultStatus.get(status).copy());
+    }
 
+    public abstract void fire();
+
+    public abstract void move(Direction direction);
+
+    public abstract void stop(Direction direction);
+
+    public void update() { // shoot bullets
+        for (Status status : Status.values()) {
+            currentStatus.get(status).update();
+        }
     }
 
     @Override
-    public void render(Graphics g) {
-
-    }
-
-    public Set<Direction> getDirections() {
-        return directions;
+    public void render(Graphics g) { // render the status
+        for (Status status : Status.values()) {
+            currentStatus.get(status).render(g);
+        }
     }
 
     @Override

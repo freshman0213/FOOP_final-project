@@ -1,18 +1,31 @@
-package flyingobjects;
+package flyingObjects;
 
+import fsm.ImageState;
 import model.Sprite;
 import model.SpriteShape;
-import effect.Effect;
 
 import java.awt.*;
 
-public abstract class FlyingObjects extends Sprite { // templates for bullets, boosts
-    protected SpriteShape shape;
-    protected Dimension VELOCITY;
-    protected Effect effects;
+public class FlyingObjects extends Sprite { // templates for bullets, boosts
+    private SpriteShape shape;
+    private Image image; // no renderer needed because only one image
+    private Dimension velocity;
+
+    public FlyingObjects() {
+
+    }
+
+    public Image getImage() {
+        return image;
+    }
 
     @Override
     public void update() {
+
+    }
+
+    @Override
+    public void render(Graphics g) {
 
     }
 
@@ -35,6 +48,4 @@ public abstract class FlyingObjects extends Sprite { // templates for bullets, b
     public Dimension getBodySize() {
         return null;
     }
-
-
 }

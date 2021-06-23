@@ -1,20 +1,11 @@
-package boss;
+package bosses;
 
 import fsm.FiniteStateMachine;
-import fsm.ImageRenderer;
-import fsm.State;
-import fsm.WaitingPerFrame;
 import model.Direction;
 import model.HealthPointSprite;
 import model.SpriteShape;
 
 import java.awt.*;
-import java.util.Set;
-import java.util.concurrent.CopyOnWriteArraySet;
-
-import static fsm.FiniteStateMachine.Transition.from;
-
-import static utils.ImageStateUtils.imageStatesFromFolder;
 
 public abstract class Boss extends HealthPointSprite { // template for all bosses
     protected SpriteShape shape;
