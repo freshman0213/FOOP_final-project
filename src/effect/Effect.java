@@ -1,10 +1,7 @@
 package effect;
 
-import warplane.StatusState;
-
-import java.util.List;
+import livingObject.LivingObject;
 
 public interface Effect {
-    List<Object> getAffectedStatus();
-    StatusState nextState(Object status);
+    void apply(LivingObject livingObject);
 }

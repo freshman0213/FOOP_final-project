@@ -1,8 +1,4 @@
 import controller.Game;
-import knight.Attacking;
-import knight.Knight;
-import knight.KnightCollisionHandler;
-import knight.Walking;
 import model.HealthPointSprite;
 import model.World;
 import views.GameView;

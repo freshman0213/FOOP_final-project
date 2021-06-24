@@ -35,6 +35,24 @@ public class ImageStateUtils {
         }
     }
 
+    public static List<Image> imagesFromFolder(String folderPath) {
+        try {
+            List<File> files = Files.list(Path.of(folderPath))
+                    .map(ImageStateUtils::readFile)
+                    .filter(ImageStateUtils::validateFileName)
+                    .collect(toList());
+            sortFilesByAscendingIndex(files);
+            return files.stream().map(ImageStateUtils::readImage)
+                    .collect(toList());
+        } catch (IOException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    public static List<ImageState> imagesToImagesStates(List<Image> images, ImageRenderer imageRenderer) {
+        return images.stream().map(image -> new ImageState(image, imageRenderer)).collect(toList());
+    }
+
     public static File readFile(Path filePath) {
         return filePath.toFile();
     }

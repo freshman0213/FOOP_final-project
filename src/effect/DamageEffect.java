@@ -1,0 +1,16 @@
+package effect;
+
+import livingObject.LivingObject;
+
+public class DamageEffect implements Effect {
+    private int damage;
+
+    public DamageEffect(int damage) {
+        this.damage = damage;
+    }
+
+    @Override
+    public void apply(LivingObject livingObject) {
+        livingObject.onDamaged(, damage);
+    }
+}
