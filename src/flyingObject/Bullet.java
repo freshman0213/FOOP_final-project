@@ -13,10 +13,11 @@ public abstract class Bullet extends FlyingObjects {
     public Bullet(SpriteShape shape, Dimension movement, List<Image> images, int damage) {
         super(shape, movement, images);
         this.images = images;
-        this.effects.add(new DamageEffect(damage)); // TODO: add default damage effect
+        this.effects.add(new DamageEffect(damage));
     }
 
     public List<Image> getImages() {
         return images;
     }
+    public abstract Bullet copy(Dimension movement, Point location);
 }

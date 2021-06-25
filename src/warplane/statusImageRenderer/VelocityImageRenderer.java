@@ -1,4 +1,4 @@
-package livingObject.velocity;
+package warplane.statusImageRenderer;
 
 import fsm.ImageRenderer;
 import warplane.Warplane;
@@ -6,11 +6,6 @@ import warplane.Warplane;
 import java.awt.*;
 
 public class VelocityImageRenderer implements ImageRenderer {
-    protected Warplane warplane;
-
-    public VelocityImageRenderer(Warplane warplane) {
-        this.warplane = warplane;
-    }
 
     @Override
     public void render(Image image, Graphics g) {

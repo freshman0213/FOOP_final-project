@@ -1,44 +1,34 @@
 package warplane;
 
-import fsm.ImageRenderer;
 import livingObject.LivingObject;
 import flyingObject.Bullet;
-import livingObject.cd.*;
-import livingObject.bullet.*;
-import livingObject.numBullets.*;
-import livingObject.velocity.*;
 import model.SpriteShape;
+import warplane.statusImageRenderer.BulletImageRenderer;
+import warplane.statusImageRenderer.CDImageRenderer;
+import warplane.statusImageRenderer.BulletMovementImageRenderer;
+import warplane.statusImageRenderer.VelocityImageRenderer;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.awt.*;
 
-import static livingObject.LivingObject.Status.*;
-
 public abstract class Warplane extends LivingObject {
-    private final Map<Object, ImageRenderer> imageRenderers = new HashMap<>();
+    // for displaying status to player
+    public static CDImageRenderer cdImageRenderer = new CDImageRenderer();
+    public static BulletImageRenderer bulletImageRenderer = new BulletImageRenderer();
+    public static BulletMovementImageRenderer bulletMovementImageRenderer = new BulletMovementImageRenderer();
+    public static VelocityImageRenderer velocityImageRenderer = new VelocityImageRenderer();
 
     public Warplane(int hp, int cd, Bullet bullet, int numBullet, int velocity, SpriteShape shape, List<Image> idleImages, List<Image> walkingImages) { // template for all warplanes
-        super(hp, cd, bullet, numBullet, velocity, shape, idleImages, walkingImages);
-        imageRenderers.put(CD, new CDImageRenderer(this));
-        imageRenderers.put(Bullet, new BulletImageRenderer(this));
-        imageRenderers.put(NumBullets, new NumBulletsImageRenderer(this));
-        imageRenderers.put(Velocity, new VelocityImageRenderer(this));
-
-
-    }
-
-    public ImageRenderer getImageRenderer(Object status) {
-        return imageRenderers.get(status);
+        super(hp, cd, bullet, numBullet, -1, velocity, shape, idleImages, walkingImages);
     }
 
     @Override
     public void render(Graphics g) {
         super.render(g);
         // display status
-        for (Object status : Status.values()) {
-            imageRenderers.get(status).render(currentStatus.get(status)., g); // TODO: how to handle ImageState
-        }
+        cdImageRenderer.render(current_cd.getImage(), g);
+        bulletImageRenderer.render(current_bullet.getImage(), g);
+        bulletMovementImageRenderer.render(current_bulletMovement.getImage(), g);
+        velocityImageRenderer.render(current_velocity.getImage(), g);
     }
 }

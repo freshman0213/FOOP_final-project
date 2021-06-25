@@ -6,24 +6,27 @@ import livingObject.LivingObject;
 
 import java.awt.*;
 
-import static livingObject.LivingObject.Status.*;
-
 public class NormalBulletState implements BulletState {
     private int state_remaining;
     private final LivingObject livingObject;
     private final Bullet bullet;
     private final Image image;
 
-    public NormalBulletState(int lasting_time, LivingObject livingObject, Bullet bullet, Image image) {
+    public NormalBulletState(int lasting_time, LivingObject livingObject, Bullet bullet) {
         this.state_remaining = lasting_time;
         this.livingObject = livingObject;
         this.bullet = bullet;
-        this.image = image;
+        this.image = bullet.getImages().get(0);
     }
 
     @Override
     public StatusState copy() {
-        return new NormalBulletState(this.state_remaining, this.livingObject, this.bullet, this.image);
+        return new NormalBulletState(this.state_remaining, this.livingObject, this.bullet);
+    }
+
+    @Override
+    public Image getImage() {
+        return this.image;
     }
 
     @Override
@@ -36,7 +39,7 @@ public class NormalBulletState implements BulletState {
         if (state_remaining > 0) {
             state_remaining --;
             if (state_remaining == 0) {
-                livingObject.reset(Bullet);
+                livingObject.resetBullet();
             }
         }
     }

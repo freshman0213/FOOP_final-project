@@ -16,6 +16,10 @@ public class HealthPointBar extends Sprite {
         this.maxHp = this.hp = hp;
     }
 
+    public int getHp() {
+        return hp;
+    }
+
     public void setOwner(Sprite owner) {
         this.owner = owner;
     }

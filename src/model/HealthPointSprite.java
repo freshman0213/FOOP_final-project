@@ -18,6 +18,10 @@ public abstract class HealthPointSprite extends Sprite {
         hpBar.setOwner(this);
     }
 
+    public int getHP() {
+        return hpBar.getHp();
+    }
+
     @Override
     public void onDamaged(Rectangle damageArea, int damage) {
         hpBar.onDamaged(damageArea, damage);

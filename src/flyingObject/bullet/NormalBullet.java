@@ -17,4 +17,9 @@ public class NormalBullet extends Bullet {
         super(SHAPE, movement, IMAGES, DAMAGE);
         this.location = location;
     }
+
+    @Override
+    public Bullet copy(Dimension movement, Point location) {
+        return new NormalBullet(movement, location);
+    }
 }

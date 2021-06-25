@@ -19,7 +19,7 @@ public class Walking extends CyclicSequence {
         if (livingObject.isAlive()) {
             super.update();
             for (Direction direction : livingObject.getDirections()) {
-                livingObject.getWorld().move(livingObject, direction.translate(livingObject.getVelocity()); // TODO: need to take velocity into consideration
+                livingObject.getWorld().move(livingObject, direction.translate(livingObject.getVelocity())); // TODO: need to take velocity into consideration
             }
         }
     }
