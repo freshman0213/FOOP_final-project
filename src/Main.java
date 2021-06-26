@@ -1,6 +1,8 @@
 import ai.MoveAI;
 import ai.RandomBoss;
 import boss.Boss;
+import boss.NormalBoss;
+import collisionHandler.flyingObjectCollisionHandler;
 import controller.Game;
 import model.World;
 import physicsHandler.NormalPhysicsHandler;
@@ -26,8 +28,8 @@ public class Main {
 
         // initialization procedure
         Warplane warplane = new NormalWarplane(new Point());
-        Boss boss = new ;
-        World world = new World(new , new NormalPhysicsHandler(), warplane, boss);  // model
+        Boss boss = new NormalBoss(new Point());
+        World world = new World(new flyingObjectCollisionHandler(), new NormalPhysicsHandler(), warplane, boss);  // model
         Game game = new Game(world, warplane, boss);  // controller
         GameView view = new GameView(game);  // view
         MoveAI ai = new RandomBoss(game, boss);
