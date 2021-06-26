@@ -31,6 +31,9 @@ public class flyingObjectCollisionHandler implements CollisionHandler {
         }
         else if(from instanceof LivingObject && to instanceof LivingObject){
             // minus hp
+            int damage = 30;
+            from.onDamaged(from.getBody(), damage);
+            to.onDamaged(to.getBody(), damage);
         }
         // out of window
         Rectangle range = from.getRange();
