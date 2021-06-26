@@ -14,9 +14,11 @@ import static java.util.stream.Collectors.toSet;
 public class World {
     private final List<Sprite> sprites = new CopyOnWriteArrayList<>();
     private final CollisionHandler collisionHandler;
+    private final PhysicsHandler physicsHandler;
 
-    public World(CollisionHandler collisionHandler, Sprite... sprites) {
+    public World(CollisionHandler collisionHandler, PhysicsHandler physicsHandler, Sprite... sprites) {
         this.collisionHandler = collisionHandler;
+        this.physicsHandler = physicsHandler;
         addSprites(sprites);
     }
 
@@ -42,7 +44,8 @@ public class World {
 
     public void move(Sprite from, Dimension offset) {
         Point originalLocation = new Point(from.getLocation());
-        from.getLocation().translate(offset.width, offset.height);
+        
+        physicsHandler.applyForce(from, offset);
 
         Rectangle body = from.getBody();
         // collision detection
