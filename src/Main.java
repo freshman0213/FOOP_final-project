@@ -27,7 +27,7 @@ public class Main {
         Warplane warplane = new NormalWarplane(new Point());
         Boss boss = new ;
         World world = new World(new , warplane, boss);  // model
-        Game game = new Game(world, warplane);  // controller
+        Game game = new Game(world, warplane, boss);  // controller
         GameView view = new GameView(game);  // view
         MoveAI ai = new RandomBoss(game, boss);
     }

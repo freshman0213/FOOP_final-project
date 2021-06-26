@@ -1,5 +1,6 @@
 package controller;
 
+import boss.Boss;
 import model.Direction;
 import model.World;
 import warplane.Warplane;
@@ -10,10 +11,12 @@ import warplane.Warplane;
 public class Game extends GameLoop {
     private final Warplane warplane;
     private final World world;
+    private final Boss boss;
 
-    public Game(World world, Warplane warplane) {
+    public Game(World world, Warplane warplane, Boss boss) {
         this.warplane = warplane;
         this.world = world;
+        this.boss = boss;
     }
 
     public void moveWarplane(Direction direction) {
@@ -22,6 +25,14 @@ public class Game extends GameLoop {
 
     public void stopWarplane(Direction direction) {
         warplane.stop(direction);
+    }
+
+    public void moveBoss(Direction direction) {
+        boss.move(direction);
+    }
+
+    public void stopBoss(Direction direction) {
+        boss.stop(direction);
     }
 
     @Override
