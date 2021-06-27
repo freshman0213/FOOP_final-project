@@ -10,23 +10,16 @@ public class NormalBulletState implements BulletState {
     private int state_remaining;
     private final LivingObject livingObject;
     private final Bullet bullet;
-    private final Image image;
 
     public NormalBulletState(int lasting_time, LivingObject livingObject, Bullet bullet) {
         this.state_remaining = lasting_time;
         this.livingObject = livingObject;
         this.bullet = bullet;
-        this.image = bullet.getImages().get(0);
     }
 
     @Override
     public StatusState copy() {
         return new NormalBulletState(this.state_remaining, this.livingObject, this.bullet);
-    }
-
-    @Override
-    public Image getImage() {
-        return this.image;
     }
 
     @Override

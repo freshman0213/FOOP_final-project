@@ -5,29 +5,20 @@ import livingObject.StatusState;
 
 import java.awt.*;
 
-import static utils.ImageStateUtils.imagesFromFolder;
-
 public class NormalVelocityState implements VelocityState {
     private int state_remaining;
     private final LivingObject livingObject;
     private final int velocity;
-    private final Image image;
 
     public NormalVelocityState(int lasting_time, LivingObject livingObject, int velocity) {
         this.state_remaining = lasting_time;
         this.livingObject = livingObject;
         this.velocity = velocity;
-        this.image = imagesFromFolder("").get(0);
     }
 
     @Override
     public StatusState copy() {
         return new NormalVelocityState(this.state_remaining, this.livingObject, this.velocity);
-    }
-
-    @Override
-    public Image getImage() {
-        return this.image;
     }
 
     @Override

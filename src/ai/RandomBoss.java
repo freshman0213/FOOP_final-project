@@ -39,10 +39,10 @@ public class RandomBoss implements MoveAI {
             }
 
             if (now != prev && prev != 0) {
-                game.stop(, directions.get(prev));
+                game.stopBoss(directions.get(prev));
             }
             if (now != 0) {
-                game.move(, directions.get(now));
+                game.moveBoss(directions.get(now));
             }
             prev = now;
             delay(15);

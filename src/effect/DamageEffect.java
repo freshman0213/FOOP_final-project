@@ -2,6 +2,8 @@ package effect;
 
 import livingObject.LivingObject;
 
+import java.awt.*;
+
 public class DamageEffect implements Effect {
     private int damage;
 
@@ -11,6 +13,6 @@ public class DamageEffect implements Effect {
 
     @Override
     public void apply(LivingObject livingObject) {
-        livingObject.onDamaged(, damage);
-    }
+        livingObject.onDamaged(null, damage);
+    } // don't care damageArea
 }

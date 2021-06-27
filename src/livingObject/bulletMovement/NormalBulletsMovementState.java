@@ -7,31 +7,22 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static utils.ImageStateUtils.imagesFromFolder;
-
 public class NormalBulletsMovementState implements BulletMovementState {
     private int state_remaining;
     private final LivingObject livingObject;
     private final int numBullets;
     private final int direction; // up: -1, down: 1
-    private final Image image;
 
     public NormalBulletsMovementState(int lasting_time, LivingObject livingObject, int numBullets, int direction) {
         this.state_remaining = lasting_time;
         this.livingObject = livingObject;
         this.numBullets = numBullets;
         this.direction = direction;
-        this.image = imagesFromFolder("").get(0);
     }
 
     @Override
     public StatusState copy() {
         return new NormalBulletsMovementState(this.state_remaining, this.livingObject, this.numBullets, this.direction);
-    }
-
-    @Override
-    public Image getImage() {
-        return this.image;
     }
 
     @Override

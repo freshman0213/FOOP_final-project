@@ -27,10 +27,11 @@ public class NormalWarplane extends Warplane {
     @Override
     public void fire() {
         Rectangle range = getRange();
-        Point location = new Point(range.x + 72, range.y + 9);
+        Bullet bullet = current_bullet.getBullet();
+        Point location = new Point(range.x + 72 - (bullet.getBodySize().width / 2) - bullet.getBodyOffset().width, range.y + 9 - bullet.getBodyOffset().height - bullet.getBodyOffset().height);
         for (Dimension movement : current_bulletMovement.getMovements()) {
-            Bullet bullet = current_bullet.getBullet().copy(movement, location);
-            this.world.addSprite(bullet);
+            Bullet new_bullet = bullet.copy(movement, location);
+            this.world.addSprite(new_bullet);
         }
     }
 }

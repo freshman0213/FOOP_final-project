@@ -15,7 +15,7 @@ import static utils.ImageStateUtils.imagesToImagesStates;
 
 public abstract class FlyingObjects extends Sprite {
     private final SpriteShape shape;
-    private Dimension movement;
+    private final Dimension movement;
     protected List<Effect> effects = new ArrayList<>();
     private final State imagesState;
 
@@ -30,6 +30,10 @@ public abstract class FlyingObjects extends Sprite {
 
     public List<Effect> getEffects() {
         return effects;
+    }
+
+    public Dimension getMovement() {
+        return movement;
     }
 
     @Override

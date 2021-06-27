@@ -27,10 +27,11 @@ public class NormalBoss extends Boss {
     @Override
     public void fire() {
         Rectangle range = getRange();
-        Point location = new Point(range.x + 84, range.y + 141);
+        Bullet bullet = current_bullet.getBullet();
+        Point location = new Point(range.x + 84 - (bullet.getBodySize().width / 2) - bullet.getBodyOffset().width, range.y + 141 - bullet.getBodyOffset().height);
         for (Dimension movement : current_bulletMovement.getMovements()) {
-            Bullet bullet = current_bullet.getBullet().copy(movement, location);
-            this.world.addSprite(bullet);
+            Bullet new_bullet = bullet.copy(movement, location);
+            this.world.addSprite(new_bullet);
         }
     }
 }

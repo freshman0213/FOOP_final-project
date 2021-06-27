@@ -1,5 +1,6 @@
 package flyingObject.boost;
 
+import effect.CDEffect;
 import flyingObject.Boost;
 import model.SpriteShape;
 
@@ -10,11 +11,11 @@ import static utils.ImageStateUtils.imagesFromFolder;
 
 public class CDBoost extends Boost {
     public static SpriteShape SHAPE = new SpriteShape(new Dimension(), new Dimension(), new Dimension());
-    public static List<Image> IMAGES = imagesFromFolder("");
+    public static List<Image> IMAGES = imagesFromFolder("assets/cdBoost");
 
     public CDBoost(Point location) {
         super(SHAPE, IMAGES);
         this.location = location;
-        // TODO: add effects
+        this.effects.add(new CDEffect(2));
     }
 }

@@ -20,4 +20,18 @@ public abstract class Bullet extends FlyingObjects {
         return images;
     }
     public abstract Bullet copy(Dimension movement, Point location);
+
+    @Override
+    public Dimension getBodyOffset() {
+        // bullets would move upward or downward, making the offset not consistent
+        if (getMovement().height < 0) {
+            return super.getBodyOffset();
+        }
+        else {
+            Rectangle range = super.getRange();
+            Dimension offset = super.getBodyOffset();
+            Dimension body = super.getBodySize();
+            return new Dimension(offset.width, range.height - body.height - offset.height);
+        }
+    }
 }
