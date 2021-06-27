@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import controller.Game;
+import flyingObject.Bullet;
 import flyingObject.FlyingObjects;
 import livingObject.LivingObject;
 import views.GameView;

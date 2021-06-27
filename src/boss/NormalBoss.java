@@ -11,7 +11,7 @@ import static utils.ImageStateUtils.imagesFromFolder;
 
 public class NormalBoss extends Boss {
     public static int HP = 1000000;
-    public static int CD = 20;
+    public static int CD = 50;
     public static Bullet BULLET = new NormalBullet(new Dimension(0, 0), new Point(0, 0)); // dummy bullet represents default bullet
     public static int NUMBULLET = 1;
     public static int VELOCITY = 3;
@@ -28,8 +28,8 @@ public class NormalBoss extends Boss {
     public void fire() {
         Rectangle body = getBody();
         Bullet bullet = current_bullet.getBullet();
-        Point location = new Point(body.x + (body.width / 2) - (bullet.getBodySize().width / 2) - bullet.getBodyOffset().width, body.y + body.height + 1 - bullet.getBodyOffset().height);
         for (Dimension movement : current_bulletMovement.getMovements()) {
+            Point location = new Point(body.x + (body.width / 2) - (bullet.getBodySize().width / 2) - bullet.getBodyOffset().width, body.y + body.height + 1 - bullet.getBodyOffset().height);
             Bullet new_bullet = bullet.copy(movement, location);
             this.world.addSprite(new_bullet);
         }

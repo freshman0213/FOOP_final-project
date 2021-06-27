@@ -34,7 +34,7 @@ public class NormalBulletsMovementState implements BulletMovementState {
             movements.add(new Dimension(-i, direction*5));
         }
         if (numBullets % 2 == 1) {
-            movements.add(new Dimension(5, direction*5));
+            movements.add(new Dimension(0, direction*5));
         }
         return movements;
     }
