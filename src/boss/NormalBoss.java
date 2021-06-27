@@ -10,7 +10,7 @@ import java.awt.*;
 import static utils.ImageStateUtils.imagesFromFolder;
 
 public class NormalBoss extends Boss {
-    public static int HP = 1000000;
+    public static int HP = 1000;
     public static int CD = 50;
     public static Bullet BULLET = new NormalBullet(new Dimension(0, 0), new Point(0, 0)); // dummy bullet represents default bullet
     public static int NUMBULLET = 1;

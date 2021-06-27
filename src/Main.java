@@ -4,6 +4,8 @@ import boss.Boss;
 import boss.NormalBoss;
 import collisionHandler.ObjectCollisionHandler;
 import controller.Game;
+import flyingObject.Boost;
+import flyingObject.boost.CDBoost;
 import model.World;
 import physicsHandler.NormalPhysicsHandler;
 import views.GameView;
@@ -29,7 +31,8 @@ public class Main {
         // initialization procedure
         Warplane warplane = new NormalWarplane(new Point(500, 850));
         Boss boss = new NormalBoss(new Point(500, 100));
-        World world = new World(new ObjectCollisionHandler(), new NormalPhysicsHandler(), warplane, boss);  // model
+        Boost cdBoost = new CDBoost(new Point(800, 100));
+        World world = new World(new ObjectCollisionHandler(), new NormalPhysicsHandler(), warplane, boss, cdBoost);  // model
         Game game = new Game(world, warplane, boss);  // controller
         GameView view = new GameView(game);  // view
         MoveAI ai = new RandomBoss(game, boss);

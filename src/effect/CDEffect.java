@@ -12,6 +12,6 @@ public class CDEffect implements Effect {
 
     @Override
     public void apply(LivingObject livingObject) {
-        livingObject.changeCD(new NormalCDState(20, livingObject, cd));
+        livingObject.changeCD(new NormalCDState(500, livingObject, cd));
     }
 }
