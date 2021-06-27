@@ -57,16 +57,16 @@ public class World {
         
         // collision detection
         for (Sprite to : sprites) {
-            if (to != from && body.intersects(to.getBody())) {
+            if (to != from && to.isAlive() && body.intersects(to.getBody())) {
                 collisionHandler.handle(originalLocation, from, to);
             }
         }
 
-        if(from.isAlive() && from instanceof FlyingObjects){
+        if(from instanceof FlyingObjects){
             if(body.x < 0 || body.y < 0 || body.x + body.width > GameView.WIDTH || body.y + body.height > GameView.HEIGHT)
                 removeSprite(from);
         }
-        else if(from.isAlive() && from instanceof LivingObject){
+        else if(from instanceof LivingObject){
             if(body.x < 0) from.setLocation(new Point(range.x - body.x, range.y));
             if(body.y < 0) from.setLocation(new Point(range.x, range.y - body.y));
             if(body.x + body.width > GameView.WIDTH) from.setLocation(new Point(range.x - (body.x + body.width - GameView.WIDTH), range.y));

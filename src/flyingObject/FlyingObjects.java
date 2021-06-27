@@ -38,7 +38,9 @@ public abstract class FlyingObjects extends Sprite {
 
     @Override
     public void update() {
-        this.getWorld().move(this, movement);
+        if(isAlive()){
+            this.getWorld().move(this, movement);
+        }
         imagesState.update();
     }
 
