@@ -42,13 +42,6 @@ public class ObjectCollisionHandler implements CollisionHandler {
             from.onDamaged(from.getBody(), damage);
             to.onDamaged(to.getBody(), damage);
         }
-        // out of window
-        Rectangle range = from.getRange();
-        Rectangle body = from.getBody();
-        if(body.x < 0) from.setLocation(new Point(range.x - body.x, range.y));
-        if(body.y < 0) from.setLocation(new Point(range.x, range.y - body.y));
-        if(body.x + body.width > GameView.WIDTH) from.setLocation(new Point(range.x - (body.x + body.width - GameView.WIDTH), range.y));
-        if(body.y + body.height > GameView.HEIGHT) from.setLocation(new Point(range.x, range.y - (body.y + body.height - GameView.HEIGHT)));
     }
     
 }

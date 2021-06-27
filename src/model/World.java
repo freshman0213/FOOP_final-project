@@ -5,6 +5,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import controller.Game;
+import flyingObject.FlyingObjects;
+import livingObject.LivingObject;
+import views.GameView;
+
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toSet;
 
@@ -47,12 +52,25 @@ public class World {
         
         physicsHandler.applyForce(from, offset);
 
+        Rectangle range = from.getRange();
         Rectangle body = from.getBody();
+        
         // collision detection
         for (Sprite to : sprites) {
             if (to != from && body.intersects(to.getBody())) {
                 collisionHandler.handle(originalLocation, from, to);
             }
+        }
+
+        if(from instanceof FlyingObjects){
+            if(body.x < 0 || body.y < 0 || body.x + body.width > GameView.WIDTH || body.y + body.height > GameView.HEIGHT)
+                removeSprite(from);
+        }
+        else if(from instanceof LivingObject){
+            if(body.x < 0) from.setLocation(new Point(range.x - body.x, range.y));
+            if(body.y < 0) from.setLocation(new Point(range.x, range.y - body.y));
+            if(body.x + body.width > GameView.WIDTH) from.setLocation(new Point(range.x - (body.x + body.width - GameView.WIDTH), range.y));
+            if(body.y + body.height > GameView.HEIGHT) from.setLocation(new Point(range.x, range.y - (body.y + body.height - GameView.HEIGHT)));
         }
     }
 
