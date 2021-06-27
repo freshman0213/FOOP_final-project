@@ -16,8 +16,8 @@ import java.util.Collection;
  * @author - johnny850807@gmail.com (Waterball)
  */
 public class GameView extends JFrame {
-    public static final int HEIGHT = 500;
-    public static final int WIDTH = 500;
+    public static final int HEIGHT = 1000;
+    public static final int WIDTH = 1000;
     private final Canvas canvas;
     private final StartCanvas startCanvas;
     private final Game game;

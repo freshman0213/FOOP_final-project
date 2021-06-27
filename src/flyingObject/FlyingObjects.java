@@ -24,7 +24,7 @@ public abstract class FlyingObjects extends Sprite {
         this.movement = movement;
 
         ImageRenderer imageRenderer = new FlyingObjectImageRenderer(this);
-        imagesState = new WaitingPerFrame(2,
+        imagesState = new WaitingPerFrame(3,
                 new Idle(imagesToImagesStates(images, imageRenderer)));
     }
 
@@ -39,6 +39,7 @@ public abstract class FlyingObjects extends Sprite {
     @Override
     public void update() {
         this.getWorld().move(this, movement);
+        imagesState.update();
     }
 
     @Override

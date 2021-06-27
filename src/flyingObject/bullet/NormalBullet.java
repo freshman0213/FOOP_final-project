@@ -9,7 +9,7 @@ import java.awt.*;
 import static utils.ImageStateUtils.imagesFromFolder;
 
 public class NormalBullet extends Bullet {
-    public static SpriteShape SHAPE = new SpriteShape(new Dimension(24, 24), new Dimension(10, 2), new Dimension(4, 4));
+    public static SpriteShape SHAPE = new SpriteShape(new Dimension(96, 96), new Dimension(40, 8), new Dimension(16, 16));
     public static int DAMAGE = 20;
     public static List<Image> IMAGES = imagesFromFolder("assets/normalBullet");
 

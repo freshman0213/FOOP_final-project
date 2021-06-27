@@ -20,6 +20,7 @@ public class RandomBoss implements MoveAI {
         this.game = game;
         this.owner = owner;
         prev = 0;
+        new Thread(this::move).start();
     }
 
     @Override
@@ -28,10 +29,10 @@ public class RandomBoss implements MoveAI {
             // tends to move consistently
             int random = FixedRandom.nextInt(10);
             int now;
-            if (random < 6) {
+            if (random < 8) {
                 now = prev;
             }
-            else if (random < 8) {
+            else if (random < 9) {
                 now = (prev + 1) % directions.size();
             }
             else {

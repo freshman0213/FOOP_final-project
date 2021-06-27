@@ -30,12 +30,13 @@ public class NormalBulletsMovementState implements BulletMovementState {
         // Symmetric
         List<Dimension> movements = new ArrayList<>();
         for (int i = 1; i <= numBullets / 2; i++) {
-            movements.add(new Dimension(i, direction*5));
-            movements.add(new Dimension(-i, direction*5));
+            movements.add(new Dimension(10*i, direction*5));
+            movements.add(new Dimension(-10*i, direction*5));
         }
         if (numBullets % 2 == 1) {
             movements.add(new Dimension(0, direction*5));
         }
+        System.out.printf("%d\n", movements.size());
         return movements;
     }
 

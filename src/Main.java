@@ -27,8 +27,8 @@ public class Main {
 //        addAudioByFilePath(HealthPointSprite.AUDIO_DIE, new File("assets/audio/die.wav"));
 
         // initialization procedure
-        Warplane warplane = new NormalWarplane(new Point(250, 350));
-        Boss boss = new NormalBoss(new Point(250, 0));
+        Warplane warplane = new NormalWarplane(new Point(500, 850));
+        Boss boss = new NormalBoss(new Point(500, 100));
         World world = new World(new ObjectCollisionHandler(), new NormalPhysicsHandler(), warplane, boss);  // model
         Game game = new Game(world, warplane, boss);  // controller
         GameView view = new GameView(game);  // view
