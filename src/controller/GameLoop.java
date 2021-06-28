@@ -23,15 +23,21 @@ public abstract class GameLoop {
         while (running) {
             World world = getWorld();
             world.update();
-            view.render(world);
+            view.renderWorld(world);
             delay(15);
         }
     }
 
     protected abstract World getWorld();
 
-    public void stop() {
+    public void win() {
         running = false;
+        view.win();
+    }
+
+    public void lose() {
+        running = false;
+        view.lose();
     }
 
     private void delay(long ms) {

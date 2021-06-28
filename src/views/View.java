@@ -3,5 +3,7 @@ package views;
 import model.World;
 
 public interface View {
-    void render(World world);
+    void renderWorld(World world);
+    void win();
+    void lose();
 }

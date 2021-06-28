@@ -3,19 +3,12 @@ package views;
 import java.awt.*;
 import java.awt.event.*;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import controller.Game;
 
-public class StartCanvas extends JPanel{
-    private Game game;
-    private GameView gameView;
-
-    public StartCanvas(Game game , GameView gameView){
-        this.game = game;
-        this.gameView = gameView;
-        this.setLayout(null); //use absolute layout
+public class StartCanvas extends Canvas{
+    
+    public StartCanvas(Game game , GameView gameView, String path){
+        super(game, gameView, path);
         addEventListener();
         render();
     }
@@ -33,7 +26,6 @@ public class StartCanvas extends JPanel{
                     case KeyEvent.VK_ENTER:
                         game.start();
                         gameView.launch();
-                        System.out.println("press");
                         setFocusable(false);
                         break;
                 }
@@ -48,15 +40,15 @@ public class StartCanvas extends JPanel{
         requestFocusInWindow();
     }
 
-    public void render(){
-        System.out.println("paint start view");
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        background.render(g);
+    }
+
+    @Override
+    public void render() {
         setSize(GameView.WIDTH, GameView.HEIGHT);
-        setBackground(Color.GRAY);
-        
-        JLabel label = new JLabel("Press Enter To Start");
-        label.setFont(new Font("Serif", Font.BOLD, 20));
-        label.setBounds(GameView.WIDTH * 3 / 8, GameView.HEIGHT / 8, GameView.WIDTH * 2 / 8, GameView.HEIGHT / 8);
-        label.setForeground(Color.BLUE);
-        add(label);
+        repaint(); //call paintComponent();
     }
 }

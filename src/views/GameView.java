@@ -16,16 +16,16 @@ import java.util.Collection;
  * @author - johnny850807@gmail.com (Waterball)
  */
 public class GameView extends JFrame {
-    public static final int HEIGHT = 1000;
-    public static final int WIDTH = 1000;
-    private final Canvas canvas;
+    public static final int HEIGHT = 600;
+    public static final int WIDTH = 600;
+    private final MainCanvas canvas;
     private final StartCanvas startCanvas;
     private final Game game;
 
-    public GameView(Game game) throws HeadlessException {
+    public GameView(Game game){
         this.game = game;
-        this.startCanvas = new StartCanvas(game, this);
-        this.canvas = new Canvas(game);
+        this.startCanvas = new StartCanvas(game, this, "assets/startBackground");
+        this.canvas = new MainCanvas(game, this,  "assets/gameBackground");
         game.setView(canvas);
         start();
     }
@@ -45,6 +45,14 @@ public class GameView extends JFrame {
         setSize(WIDTH, HEIGHT);
         setContentPane(canvas);
         setVisible(true);
+    }
+
+    public void win() {
+
+    }
+
+    public void lose() {
+
     }
 }
 
