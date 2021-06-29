@@ -11,4 +11,6 @@ public abstract class Boost extends FlyingObjects {
     public Boost(SpriteShape shape, List<Image> images) {
         super(shape, MOVEMENT, images);
     }
+
+    public abstract Boost copy(Point location);
 }

@@ -18,4 +18,9 @@ public class CDBoost extends Boost {
         this.location = location;
         this.effects.add(new CDEffect(2));
     }
+
+    @Override
+    public Boost copy(Point location) {
+        return new CDBoost(location);
+    }
 }
