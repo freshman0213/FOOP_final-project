@@ -11,7 +11,7 @@ public class GameView extends JFrame {
     public static final int HEIGHT = 600;
     public static final int WIDTH = 600;
     private final MainCanvas mainCanvas;
-    private StartCanvas startCanvas;
+    private BackgroundCanvas backgroundCanvas;
     private final Game game;
 
     public GameView(Game game){
@@ -22,8 +22,8 @@ public class GameView extends JFrame {
     }
 
     public void start() {
-        startCanvas = new StartCanvas(game, this, "assets/startBackground");
-        setCanvas(startCanvas);
+        backgroundCanvas = new BackgroundCanvas(game, this, "assets/startBackground");
+        setCanvas(backgroundCanvas);
     }
 
     public void launch() {
@@ -31,13 +31,13 @@ public class GameView extends JFrame {
     }
 
     public void win() {
-        startCanvas = new StartCanvas(game, this, "assets/winBackground");
-        setCanvas(startCanvas);
+        backgroundCanvas = new BackgroundCanvas(game, this, "assets/winBackground");
+        setCanvas(backgroundCanvas);
     }
 
     public void lose() {
-        startCanvas = new StartCanvas(game, this, "assests/loseBackground");
-        setCanvas(startCanvas);
+        backgroundCanvas = new BackgroundCanvas(game, this, "assests/loseBackground");
+        setCanvas(backgroundCanvas);
     }
 
     private void setCanvas(Canvas canvas){

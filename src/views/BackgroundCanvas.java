@@ -5,9 +5,9 @@ import java.awt.event.*;
 
 import controller.Game;
 
-public class StartCanvas extends Canvas{
+public class BackgroundCanvas extends Canvas{
     
-    public StartCanvas(Game game , GameView gameView, String path){
+    public BackgroundCanvas(Game game , GameView gameView, String path){
         super(game, gameView, path);
         addEventListener();
         render();
