@@ -23,15 +23,4 @@ public class NormalBoss extends Boss {
         super(HP, CD, BULLET, NUMBULLET, VELOCITY, SHAPE, IDLEIMAGES, WALKINGIMAGES);
         this.location = location;
     }
-
-    @Override
-    public void fire() {
-        Rectangle body = getBody();
-        Bullet bullet = current_bullet.getBullet();
-        for (Dimension movement : current_bulletMovement.getMovements()) {
-            Point location = new Point(body.x + (body.width / 2) - (bullet.getBodySize().width / 2) - bullet.getBodyOffset().width, body.y + body.height + 1 - bullet.getBodyOffset().height);
-            Bullet new_bullet = bullet.copy(movement, location);
-            this.world.addSprite(new_bullet);
-        }
-    }
 }

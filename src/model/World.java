@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import controller.Game;
+import flyingObject.Boost;
 import flyingObject.Bullet;
 import flyingObject.FlyingObjects;
+import flyingObject.boost.BoostHandler;
 import livingObject.LivingObject;
 import views.GameView;
 
@@ -21,16 +23,21 @@ public class World {
     private final List<Sprite> sprites = new CopyOnWriteArrayList<>();
     private final CollisionHandler collisionHandler;
     private final PhysicsHandler physicsHandler;
+    private final BoostHandler boostHandler;
 
-    public World(CollisionHandler collisionHandler, PhysicsHandler physicsHandler, Sprite... sprites) {
+    public World(CollisionHandler collisionHandler, PhysicsHandler physicsHandler, BoostHandler boostHandler, Sprite... sprites) {
         this.collisionHandler = collisionHandler;
         this.physicsHandler = physicsHandler;
+        this.boostHandler = boostHandler;
         addSprites(sprites);
     }
 
     public void update() {
         for (Sprite sprite : sprites) {
             sprite.update();
+        }
+        for (Sprite boost : boostHandler.getBoosts()) {
+            addSprite(boost);
         }
     }
 

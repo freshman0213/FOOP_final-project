@@ -2,8 +2,6 @@ package effect;
 
 import livingObject.LivingObject;
 
-import java.awt.*;
-
 public class DamageEffect implements Effect {
     private int damage;
 

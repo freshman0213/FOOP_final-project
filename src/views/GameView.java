@@ -8,8 +8,8 @@ import javax.swing.*;
  * @author - johnny850807@gmail.com (Waterball)
  */
 public class GameView extends JFrame {
-    public static final int HEIGHT = 600;
-    public static final int WIDTH = 600;
+    public static final int HEIGHT = 1000;
+    public static final int WIDTH = 1000;
     private final MainCanvas mainCanvas;
     private BackgroundCanvas backgroundCanvas;
     private final Game game;
