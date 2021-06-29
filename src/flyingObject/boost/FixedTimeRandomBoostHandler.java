@@ -12,7 +12,7 @@ import java.util.List;
 public class FixedTimeRandomBoostHandler implements BoostHandler {
     public static int LENGTH = 800;
     private int remaining;
-    private List<Boost> candidateBoosts = Arrays.asList(new CDBoost(new Point(0, 0)));
+    private List<Boost> candidateBoosts = Arrays.asList(new CDBoost(new Point(0, 0)), new HealBoost(new Point(0, 0)), new NumBulletBoost(new Point(0, 0)), new VelocityBoost(new Point(0, 0)));
 
     public FixedTimeRandomBoostHandler() {
         remaining = LENGTH;

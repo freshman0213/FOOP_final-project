@@ -17,15 +17,10 @@ public abstract class FlyingObjects extends Sprite {
     private final SpriteShape shape;
     private final Dimension movement;
     protected List<Effect> effects = new ArrayList<>();
-    private final State imagesState;
 
     public FlyingObjects(SpriteShape shape, Dimension movement, List<Image> images) {
         this.shape = shape;
         this.movement = movement;
-
-        ImageRenderer imageRenderer = new FlyingObjectImageRenderer(this);
-        imagesState = new WaitingPerFrame(3,
-                new Idle(imagesToImagesStates(images, imageRenderer)));
     }
 
     public List<Effect> getEffects() {
@@ -41,12 +36,6 @@ public abstract class FlyingObjects extends Sprite {
         if(isAlive()){
             this.getWorld().move(this, movement);
         }
-        imagesState.update();
-    }
-
-    @Override
-    public void render(Graphics g) {
-        imagesState.render(g);
     }
 
     @Override

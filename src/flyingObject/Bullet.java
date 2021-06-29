@@ -1,23 +1,42 @@
 package flyingObject;
 
 import effect.DamageEffect;
+import flyingObject.bullet.BulletImageRenderer;
+import fsm.ImageRenderer;
+import fsm.State;
+import fsm.WaitingPerFrame;
 import model.SpriteShape;
 
 import java.util.List;
 import java.awt.*;
 
+import static utils.ImageStateUtils.imagesToImagesStates;
+
 public abstract class Bullet extends FlyingObjects {
     private int damage;
-    protected List<Image> images; // for displaying current images
+    private final State imagesState;
 
     public Bullet(SpriteShape shape, Dimension movement, List<Image> images, int damage) {
         super(shape, movement, images);
         this.damage = damage;
-        this.images = images;
         this.effects.add(new DamageEffect(damage));
+
+        ImageRenderer imageRenderer = new BulletImageRenderer(this);
+        imagesState = new WaitingPerFrame(3,
+                new Idle(imagesToImagesStates(images, imageRenderer)));
     }
 
     public abstract Bullet copy(Dimension movement, Point location);
+
+    @Override
+    public void update() {
+        super.update();
+        imagesState.update();
+    }
+
+    public void render(Graphics g) {
+        imagesState.render(g);
+    }
 
     @Override
     public Dimension getBodyOffset() {

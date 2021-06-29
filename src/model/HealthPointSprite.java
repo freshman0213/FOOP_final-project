@@ -22,6 +22,10 @@ public abstract class HealthPointSprite extends Sprite {
         return hpBar.getHp();
     }
 
+    public void setHP(int hp) {
+        hpBar.setHp(hp);
+    }
+
     @Override
     public void onDamaged(Rectangle damageArea, int damage) {
         hpBar.onDamaged(damageArea, damage);
