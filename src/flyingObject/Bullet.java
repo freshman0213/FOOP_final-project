@@ -23,7 +23,8 @@ public abstract class Bullet extends FlyingObjects {
     public Dimension getBodyOffset() {
         // bullets would move upward or downward, making the offset not consistent
         if (getMovement().height < 0) {
-            return super.getBodyOffset();
+            Dimension offset = super.getBodyOffset();
+            return offset;
         }
         else {
             Rectangle range = super.getRange();

@@ -14,12 +14,14 @@ public class RandomBoss implements MoveAI {
     private final Game game;
     private final LivingObject owner;
     private int prev;
+    private int length, remaining;
     public static List<Direction> directions = Arrays.asList(null, LEFT, RIGHT);
 
     public RandomBoss(Game game, LivingObject owner) {
         this.game = game;
         this.owner = owner;
         prev = 0;
+        length = remaining = 10;
         new Thread(this::move).start();
     }
 
@@ -27,16 +29,22 @@ public class RandomBoss implements MoveAI {
     public void move() {
         while (owner.isAlive()) {
             // tends to move consistently
-            int random = FixedRandom.nextInt(10);
             int now;
-            if (random < 8) {
-                now = prev;
-            }
-            else if (random < 9) {
-                now = (prev + 1) % directions.size();
+            if (-- remaining <= 0) {
+                int random = FixedRandom.nextInt(10);
+                if (random < 8) {
+                    now = prev;
+                }
+                else if (random < 9) {
+                    now = (prev + 1) % directions.size();
+                }
+                else {
+                    now = (prev + 2) % directions.size();
+                }
+                remaining = length;
             }
             else {
-                now = (prev + 2) % directions.size();
+                now = prev;
             }
 
             if (now != prev && prev != 0) {
