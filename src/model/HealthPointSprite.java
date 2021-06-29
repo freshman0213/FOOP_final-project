@@ -1,7 +1,6 @@
 package model;
 
 import healthpointbar.HealthPointBar;
-import media.AudioPlayer;
 
 import java.awt.*;
 
@@ -9,7 +8,6 @@ import java.awt.*;
  * @author - johnny850807@gmail.com (Waterball)
  */
 public abstract class HealthPointSprite extends Sprite {
-    public static final String AUDIO_DIE = "Die";
 
     protected HealthPointBar hpBar;
 
@@ -22,8 +20,9 @@ public abstract class HealthPointSprite extends Sprite {
         return hpBar.getHp();
     }
 
-    public void setHP(int hp) {
-        hpBar.setHp(hp);
+    @Override
+    public void onHealed(int heal) {
+        hpBar.onHealed(heal);
     }
 
     @Override
@@ -31,7 +30,6 @@ public abstract class HealthPointSprite extends Sprite {
         hpBar.onDamaged(damageArea, damage);
         if (hpBar.isDead()) {
             world.removeSprite(this);
-            // AudioPlayer.playSounds(AUDIO_DIE);
         }
     }
 

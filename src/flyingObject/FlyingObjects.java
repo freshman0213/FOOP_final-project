@@ -39,6 +39,9 @@ public abstract class FlyingObjects extends Sprite {
     }
 
     @Override
+    public void onHealed(int heal) {}
+
+    @Override
     public void onDamaged(Rectangle damageArea, int damage) {}
 
     @Override

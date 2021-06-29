@@ -3,14 +3,14 @@ package effect;
 import livingObject.LivingObject;
 
 public class HealEffect implements Effect {
-    private int hp;
+    private int heal;
 
-    public HealEffect(int hp) {
-        this.hp = hp;
+    public HealEffect(int heal) {
+        this.heal = heal;
     }
 
     @Override
     public void apply(LivingObject livingObject) {
-        livingObject.setHP(livingObject.getHP() + hp);
+        livingObject.onHealed(heal);
     }
 }

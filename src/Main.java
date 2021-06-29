@@ -4,8 +4,6 @@ import boss.Boss;
 import boss.NormalBoss;
 import collisionHandler.ObjectCollisionHandler;
 import controller.Game;
-import flyingObject.Boost;
-import flyingObject.boost.CDBoost;
 import flyingObject.boost.FixedTimeRandomBoostHandler;
 import model.World;
 import physicsHandler.NormalPhysicsHandler;
@@ -15,7 +13,6 @@ import warplane.Warplane;
 
 import java.awt.*;
 
-import static media.AudioPlayer.addAudioByFilePath;
 
 /**
  * Demo route: Main, GameView, Game, GameLoop, World, Sprite, Knight, FiniteStateMachine
@@ -23,15 +20,9 @@ import static media.AudioPlayer.addAudioByFilePath;
  */
 public class Main {
     public static void main(String[] args) {
-//        addAudioByFilePath(Walking.AUDIO_STEP1, new File("assets/audio/step1.wav"));
-//        addAudioByFilePath(Walking.AUDIO_STEP2, new File("assets/audio/step2.wav"));
-//        addAudioByFilePath(Attacking.AUDIO_SWORD_CLASH_1, new File("assets/audio/sword-clash1.wav"));
-//        addAudioByFilePath(Attacking.AUDIO_SWORD_CLASH_2, new File("assets/audio/sword-clash2.wav"));
-//        addAudioByFilePath(HealthPointSprite.AUDIO_DIE, new File("assets/audio/die.wav"));
-
         // initialization procedure
         Warplane warplane = new NormalWarplane(new Point(GameView.WIDTH / 2, GameView.HEIGHT - 100));
-        Boss boss = new NormalBoss(new Point(GameView.WIDTH / 2, 100));
+        Boss boss = new NormalBoss(new Point(GameView.WIDTH / 2, 50));
         World world = new World(new ObjectCollisionHandler(), new NormalPhysicsHandler(), new FixedTimeRandomBoostHandler(), warplane, boss);  // model
         Game game = new Game(world, warplane, boss);  // controller
         GameView view = new GameView(game);  // view
