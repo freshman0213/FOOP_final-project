@@ -1,4 +1,4 @@
-package flyingObject.bullet;
+package flyingObject;
 
 import flyingObject.Bullet;
 import fsm.ImageRenderer;

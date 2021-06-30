@@ -1,6 +1,7 @@
-package flyingObject.boost;
+package boostHandler;
 
 import flyingObject.Boost;
+import flyingObject.boost.*;
 import utils.FixedRandom;
 import views.GameView;
 

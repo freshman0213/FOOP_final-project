@@ -1,6 +1,5 @@
 package flyingObject;
 
-import flyingObject.boost.BoostImageRenderer;
 import fsm.ImageRenderer;
 import fsm.State;
 import fsm.WaitingPerFrame;

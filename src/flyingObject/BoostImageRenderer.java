@@ -1,4 +1,4 @@
-package flyingObject.boost;
+package flyingObject;
 
 import flyingObject.Boost;
 import fsm.ImageRenderer;

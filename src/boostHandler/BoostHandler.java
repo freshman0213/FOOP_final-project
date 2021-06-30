@@ -1,4 +1,4 @@
-package flyingObject.boost;
+package boostHandler;
 
 import flyingObject.Boost;
 

@@ -5,11 +5,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import controller.Game;
-import flyingObject.Boost;
-import flyingObject.Bullet;
 import flyingObject.FlyingObjects;
-import flyingObject.boost.BoostHandler;
+import boostHandler.BoostHandler;
 import livingObject.LivingObject;
 import views.GameView;
 

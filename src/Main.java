@@ -2,16 +2,13 @@ import ai.MoveAI;
 import ai.RandomBoss;
 import boss.Boss;
 import boss.NormalBoss;
-import boss.StrongerBoss;
 import collisionHandler.ObjectCollisionHandler;
 import controller.Game;
-import flyingObject.boost.FixedTimeRandomBoostHandler;
+import boostHandler.FixedTimeRandomBoostHandler;
 import model.World;
 import physicsHandler.NormalPhysicsHandler;
-import physicsHandler.RandomPhysicsHandler;
 import views.GameView;
 import warplane.NormalWarplane;
-import warplane.StrongerWarplane;
 import warplane.Warplane;
 
 import java.awt.*;

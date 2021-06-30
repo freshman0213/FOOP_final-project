@@ -1,7 +1,6 @@
 package flyingObject;
 
 import effect.DamageEffect;
-import flyingObject.bullet.BulletImageRenderer;
 import fsm.ImageRenderer;
 import fsm.State;
 import fsm.WaitingPerFrame;
