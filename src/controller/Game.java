@@ -19,6 +19,38 @@ public class Game extends GameLoop {
         this.boss = boss;
     }
 
+    @Override
+    public void start() {
+        new Thread(this::gameLoop).start();
+    }
+
+    @Override
+    protected void gameLoop() {
+        running = true;
+        while (running) {
+            World world = getWorld();
+            world.update();
+            if (!warplane.isAlive()) {
+                lose();
+            }
+            else if (!boss.isAlive()) {
+                win();
+            }
+            view.renderWorld(world);
+            delay(15);
+        }
+    }
+
+    public void win() {
+        running = false;
+        view.win();
+    }
+
+    public void lose() {
+        running = false;
+        view.lose();
+    }
+
     public void moveWarplane(Direction direction) {
         warplane.move(direction);
     }

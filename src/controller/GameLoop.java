@@ -7,8 +7,8 @@ import views.View;
  * @author - johnny850807@gmail.com (Waterball)
  */
 public abstract class GameLoop {
-    private boolean running;
-    private View view;
+    protected boolean running;
+    protected View view;
 
     public void setView(View view) {
         this.view = view;
@@ -18,7 +18,7 @@ public abstract class GameLoop {
         new Thread(this::gameLoop).start();
     }
 
-    private void gameLoop() {
+    protected void gameLoop() {
         running = true;
         while (running) {
             World world = getWorld();
@@ -30,17 +30,7 @@ public abstract class GameLoop {
 
     protected abstract World getWorld();
 
-    public void win() {
-        running = false;
-        view.win();
-    }
-
-    public void lose() {
-        running = false;
-        view.lose();
-    }
-
-    private void delay(long ms) {
+    protected void delay(long ms) {
         try {
             Thread.sleep(ms);
         } catch (InterruptedException e) {

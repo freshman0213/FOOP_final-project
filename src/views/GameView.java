@@ -36,7 +36,7 @@ public class GameView extends JFrame {
     }
 
     public void lose() {
-        backgroundCanvas = new BackgroundCanvas(game, this, "assests/loseBackground");
+        backgroundCanvas = new BackgroundCanvas(game, this, "assets/loseBackground");
         setCanvas(backgroundCanvas);
     }
 
