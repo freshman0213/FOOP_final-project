@@ -15,15 +15,21 @@ import static utils.ImageStateUtils.imagesToImagesStates;
 public abstract class Bullet extends FlyingObjects {
     private int damage;
     private final State imagesState;
+    private final Image imageForBoost;
 
     public Bullet(SpriteShape shape, Dimension movement, List<Image> images, int damage) {
         super(shape, movement, images);
         this.damage = damage;
         this.effects.add(new DamageEffect(damage));
+        imageForBoost = images.get(0);
 
         ImageRenderer imageRenderer = new BulletImageRenderer(this);
         imagesState = new WaitingPerFrame(3,
                 new Idle(imagesToImagesStates(images, imageRenderer)));
+    }
+
+    public Image getImage() {
+        return imageForBoost;
     }
 
     public abstract Bullet copy(Dimension movement, Point location);

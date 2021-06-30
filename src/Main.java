@@ -2,6 +2,7 @@ import ai.MoveAI;
 import ai.RandomBoss;
 import boss.Boss;
 import boss.NormalBoss;
+import boss.StrongerBoss;
 import collisionHandler.ObjectCollisionHandler;
 import controller.Game;
 import flyingObject.boost.FixedTimeRandomBoostHandler;
@@ -10,6 +11,7 @@ import physicsHandler.NormalPhysicsHandler;
 import physicsHandler.RandomPhysicsHandler;
 import views.GameView;
 import warplane.NormalWarplane;
+import warplane.StrongerWarplane;
 import warplane.Warplane;
 
 import java.awt.*;
@@ -29,6 +31,4 @@ public class Main {
         GameView view = new GameView(game);  // view
         MoveAI ai = new RandomBoss(game, boss);
     }
-} 12 2
-1 2 3 4 5
-1 1 40 5 1
+}
