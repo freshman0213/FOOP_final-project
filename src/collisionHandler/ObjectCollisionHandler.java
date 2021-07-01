@@ -4,13 +4,13 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.List;
 
+import boss.Boss;
 import effect.Effect;
 import flyingObject.FlyingObjects;
 import livingObject.LivingObject;
 import model.CollisionHandler;
 import model.Direction;
 import model.Sprite;
-import views.GameView;
 
 public class ObjectCollisionHandler implements CollisionHandler {
 
@@ -39,8 +39,8 @@ public class ObjectCollisionHandler implements CollisionHandler {
             else if(from.getFace() == Direction.UP) from.setLocation(new Point(from.getX(), from.getY() + (toBody.y + toBody.height - fromBody.y)));
             else if(from.getFace() == Direction.DOWN) from.setLocation(new Point(from.getX(), from.getY() - (fromBody.y + fromBody.height - toBody.y)));
             int damage = 30;
-            from.onDamaged(from.getBody(), damage);
-            to.onDamaged(to.getBody(), damage);
+            if(!(from instanceof Boss)) from.onDamaged(from.getBody(), damage);
+            if(!(to instanceof Boss)) to.onDamaged(to.getBody(), damage);
         }
     }
     
